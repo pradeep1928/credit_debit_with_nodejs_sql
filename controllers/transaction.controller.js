@@ -22,13 +22,7 @@ exports.credit = (req, res) => {
 
 
 exports.debit = (req, res) => {
-    try {
-        
-        res.status(201).json(sumAmount)
-    } catch (error) {
-        console.log(error);
-        res.status(500).json(error);
-    }
+  
 
 }
 
