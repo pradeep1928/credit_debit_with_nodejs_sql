@@ -15,6 +15,10 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.users = require("../models/user.model")(sequelize, Sequelize)
+db.users = require("../models/user.model")(sequelize, Sequelize);
+db.transactions = require("../models/transaction.model")(sequelize, Sequelize);
+
+db.users.hasMany(db.transactions, { foreignKey: 'usersId', targetKey: 'id' });
+db.transactions.belongsTo(db.users, { foreignKey: 'usersId', targetKey: 'id' });
 
 module.exports = db;
